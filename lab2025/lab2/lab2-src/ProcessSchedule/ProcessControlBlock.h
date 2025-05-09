@@ -1,46 +1,36 @@
-﻿#include <string>
+﻿#ifndef PROCESSCONTROLBLOCK_H
+#define PROCESSCONTROLBLOCK_H
+
+#include <string>
 
 class ProcessControlBlock {
 private:
     int process_name;
-    ProcessControlBlock* next_block;
-    int creat_time;
+    int create_time;
     int estimate_running_time;
-    std::string status;
+    std::string status; // R: Ready, C: Complete, W: Wait
+    ProcessControlBlock* next_block;
 
 public:
-    // 构造函数
-    ProcessControlBlock() 
-        : process_name(0), next_block(nullptr), creat_time(0), 
-          estimate_running_time(0), status("") {}
-
-    ProcessControlBlock(int name, int create_time, int running_time, std::string stat)
-        : process_name(name), creat_time(create_time), 
-          estimate_running_time(running_time), status(stat), next_block(nullptr) {}
-
-    // Getters
-    int getProcessName() const { return process_name; }
-    ProcessControlBlock* getNextBlock() const { return next_block; }
-    int getCreateTime() const { return creat_time; }
-    int getEstimateRunningTime() const { return estimate_running_time; }
-    std::string getStatus() const { return status; }
-
-    // Setters
-    void setProcessName(int name) { process_name = name; }
-    void setNextBlock(ProcessControlBlock* next) { next_block = next; }
-    void setCreateTime(int time) { creat_time = time; }
-    void setEstimateRunningTime(int time) { estimate_running_time = time; }
-    void setStatus(const std::string& stat) { status = stat; }
-
-
-    // 利用运行时间减一模拟被选中的进程启动运行的情形
-    void run(){estimate_running_time -= 1; }
-
+    // 构造函数声明
+    ProcessControlBlock(int name, int create_time, int running_time, std::string stat);
     
-
-    // 析构函数
-    ~ProcessControlBlock() {
-        // 如果 next_block 是动态分配的，需在此释放（根据实际需求决定）
-        // delete next_block; 
-    }
+    // 方法声明
+    void run();
+    
+    // Getter方法声明
+    int getProcessName() const;
+    int getCreateTime() const;
+    int getEstimateRunningTime() const;
+    std::string getStatus() const;
+    ProcessControlBlock* getNextBlock() const;
+    
+    // Setter方法声明
+    void setStatus(const std::string& new_status);
+    void setNextBlock(ProcessControlBlock* next);
+    
+    // 析构函数声明
+    ~ProcessControlBlock();
 };
+
+#endif // PROCESSCONTROLBLOCK_H

@@ -1,4 +1,7 @@
-﻿#include <string>
+﻿#ifndef PROCESSSCHEDULECONTROLLER_H
+#define PROCESSSCHEDULECONTROLLER_H
+
+#include <string>
 #include <iostream>
 #include "ProcessControlBlock.h"
 #include "ProcessQueue.h"
@@ -6,17 +9,21 @@
 class ProcessScheduleController
 {
 private:
-    
+    ProcessQueue scheduleQueue;
 
 public:
-    ProcessScheduleController(/* args */);
+    ProcessScheduleController();
+
+    void addProcess(ProcessControlBlock* pcb);
+
+    void popAndRun ();
+
+    bool haveProcess();
+
+    void startSchedule();
+
     ~ProcessScheduleController();
 };
 
-ProcessScheduleController::ProcessScheduleController(/* args */)
-{
-}
 
-ProcessScheduleController::~ProcessScheduleController()
-{
-}
+#endif // PROCESSSCHEDULECONTROLLER_H
