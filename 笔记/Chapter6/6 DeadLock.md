@@ -146,7 +146,7 @@ unimportant.
 ### 引入1: 最大资源需求表格
 
 考虑如下表格：
-- ![alt text](assets/image-2.png)
+- ![alt text](images//image-2.png)
 
 - Max那一栏存储了每个进程对每类资源的**声明最大需求**。这是进程给出的一个**保证**，保证 实际最大资源需求 $\leq $ 声明的最大资源需求。 $实际最大 \not ={理论最大}$
 - Available 一栏记录了系统实际可用的资源。
